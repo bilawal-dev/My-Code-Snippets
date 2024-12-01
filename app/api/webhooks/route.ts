@@ -8,7 +8,7 @@ import connectToDB from '@/db/connectToDB'
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
-  console.log('WEBHOOK HIT');
+  console.log('WEBHOOK HIT')
 
   if (!WEBHOOK_SECRET) {
     throw new Error('Error: Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
