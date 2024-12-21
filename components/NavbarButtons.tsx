@@ -15,8 +15,6 @@ export default function Buttons() {
         }
     }, [status]);
 
-    console.log(session);
-
     return (
         <>
             {!isLoading ? (
