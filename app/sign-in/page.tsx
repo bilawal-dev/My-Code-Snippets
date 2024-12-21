@@ -15,8 +15,14 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    console.log(isSubmitting);
+
     async function handleCustomSignIn(event: React.FormEvent) {
         event.preventDefault();
+
+        setIsSubmitting(true);
 
         const response = await signIn('credentials', {
             email,
@@ -28,15 +34,16 @@ const SignIn = () => {
             toast.success("Sign In Successfull");
             setTimeout(() => {
                 router.push('/my-snippets');
-            }, 500);
+            }, 1000);
         } else {
             toast.error(response?.error);
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
-            
+
             <Link href={'/'} className="absolute top-4 left-4 p-2 text-gray-600 hover:text-gray-800 transition-colors duration-300">
                 <BiArrowBack className="w-6 h-6" />
             </Link>
@@ -68,7 +75,7 @@ const SignIn = () => {
 
                     <Link href={'/sign-up'} className="text-slate-600 text-sm cursor-pointer hover:text-blue-500">Create An Account?</Link>
 
-                    <button className="px-6 py-3 max-sm:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Sign In</button>
+                    <button disabled={isSubmitting} className="px-6 py-3 max-sm:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">{isSubmitting ? 'Signing In...' : 'Sign In'}</button>
                 </form>
 
                 <div className="flex justify-center my-2 text-slate-500">OR</div>
