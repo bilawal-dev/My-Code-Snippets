@@ -20,6 +20,7 @@ My Code Snippets is a powerful and user-friendly application built with Next.js,
 ## 🛠️ Technologies Used
 
 - **Next.js**: For building the application with server-side rendering and static site generation.
+- **Redux-toolkit**: For global state management across the components, and also a centralized place for the application logic.
 - **Tailwind CSS**: For styling the application with utility-first CSS.
 - **NextAuth**: For implementing authentication with Google, GitHub, and custom credentials.
 - **MongoDB**: For storing user data and code snippets.
