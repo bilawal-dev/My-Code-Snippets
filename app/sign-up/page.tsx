@@ -18,6 +18,8 @@ const SignIn = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   function togglePasswordVisibility() {
     setPasswordVisible(!passwordVisible);
   };
@@ -28,6 +30,8 @@ const SignIn = () => {
 
   async function handleCustomSignIn(e: React.FormEvent) {
     e.preventDefault();
+
+    setIsSubmitting(true);
 
     const response = await fetch('/api/auth/sign-up', {
       method: 'POST',
@@ -48,6 +52,7 @@ const SignIn = () => {
     }
     else {
       toast.error(data.message);
+      setIsSubmitting(false);
     }
 
   };
@@ -116,7 +121,7 @@ const SignIn = () => {
 
           <Link href={'/sign-in'} className="text-slate-600 text-sm cursor-pointer hover:text-blue-500">Already Have An Account?</Link>
 
-          <button type="submit" className="px-6 py-3 max-sm:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Sign Up</button>
+          <button type="submit" disabled={isSubmitting} className="px-6 py-3 max-sm:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">{isSubmitting ? 'Signing Up...' : 'Sign Up'}</button>
 
         </form>
 

@@ -5,7 +5,6 @@ import { JWT } from "next-auth/jwt";
 import { Account, Session } from "next-auth";
 import { User } from "next-auth";
 import connectToDB from "@/db/connectToDB";
-import userModel from "@/db/models/UserSchema";
 import userAuthModel from "@/db/models/UserAuthSchema";
 import bcrypt from "bcryptjs";
 
