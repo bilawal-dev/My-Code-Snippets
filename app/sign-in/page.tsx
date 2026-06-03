@@ -3,7 +3,7 @@
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
@@ -32,17 +32,15 @@ const SignIn = () => {
 
         if (response?.ok) {
             toast.success("Sign In Successfull");
+            setTimeout(() => {
+                // Instead of router.push, we use a reload to ensure session state is properly updated
+                window.location.href = '/my-snippets';
+            }, 1000);
         } else {
             toast.error(response?.error);
             setIsSubmitting(false);
         }
     };
-
-    useEffect(() => {
-        if (status === 'authenticated') {
-            router.push('/my-snippets');
-        }
-    }, [status]);
 
     return (
         <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
